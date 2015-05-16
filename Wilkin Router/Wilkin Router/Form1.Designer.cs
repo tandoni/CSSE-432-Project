@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace Wilkin_Router
 {
-    partial class Wilkin_Router
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Wilkin_Router
-            // 
-            this.ClientSize = new System.Drawing.Size(909, 572);
-            this.Name = "Wilkin_Router";
-            this.Load += new System.EventHandler(this.Wilkin_Router_Load);
-            this.ResumeLayout(false);
-
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Text = "Form1";
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
     }
 }
 

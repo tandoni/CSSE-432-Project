@@ -8,19 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace Wilkin_Router
 {
-    public partial class Wilkin_Router : Form
+    public partial class Form1 : Form
     {
-        public Wilkin_Router()
+        public Form1()
         {
             InitializeComponent();
-        }
-
-        private void Wilkin_Router_Load(object sender, EventArgs e)
-        {
-            Form f1 = new Form();
-            f1.Text = "Wilkin ROUTER";
         }
     }
 }
