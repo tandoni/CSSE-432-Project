@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainScreen));
             this.label2 = new System.Windows.Forms.Label();
             this.SSID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,9 +41,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.startRouter = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.progBar = new System.Windows.Forms.ProgressBar();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.mainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -159,6 +163,8 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.label6);
+            this.mainPanel.Controls.Add(this.pictureBox2);
             this.mainPanel.Controls.Add(this.startRouter);
             this.mainPanel.Controls.Add(this.label5);
             this.mainPanel.Controls.Add(this.comboBox1);
@@ -176,12 +182,30 @@
             this.mainPanel.Size = new System.Drawing.Size(1017, 551);
             this.mainPanel.TabIndex = 11;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(731, 158);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(223, 237);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
             // progBar
             // 
             this.progBar.Location = new System.Drawing.Point(69, 241);
             this.progBar.Name = "progBar";
             this.progBar.Size = new System.Drawing.Size(885, 73);
             this.progBar.TabIndex = 12;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(225, 417);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 17);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "label6";
             // 
             // MainScreen
             // 
@@ -199,6 +223,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -219,6 +244,8 @@
         private System.Windows.Forms.Button startRouter;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.ProgressBar progBar;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label6;
     }
 }
 

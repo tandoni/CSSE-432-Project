@@ -26,7 +26,7 @@ namespace Wilkin_Router
 
         public void Form1_Load(object sender, EventArgs e)
         {
-
+            pictureBox1.Hide();
         }
         
         public bool isUserAdmin()
@@ -101,6 +101,9 @@ namespace Wilkin_Router
                     startRouter.Text = "Stop Wilkin Router";
                     SSID.Enabled = false;
                     password.Enabled = false;
+                    pictureBox1.Show();
+                    pictureBox2.Hide();
+                    label6.Text = Class1.GetIPAddress().MapToIPv4().ToString();
                 }
             }
             catch
@@ -147,6 +150,8 @@ namespace Wilkin_Router
                     progBar.Increment(50);
                     mainPanel.Visible = true;
                     startRouter.Text = "Start Wilkin Router";
+                    pictureBox1.Hide();
+                    pictureBox2.Show();
                     SSID.Enabled = true;
                     password.Enabled = true;
                 }
@@ -156,5 +161,6 @@ namespace Wilkin_Router
                 //nothing
             }
         }
+        
     }
 }
