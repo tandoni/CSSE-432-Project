@@ -9,12 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Principal;
+using System.Net;
+using System.Net.NetworkInformation;
 
 namespace Wilkin_Router
 {
     public partial class MainScreen : Form
     {
         Process newProcess = new Process();
+        private static System.Windows.Forms.Timer checkLANDevices = new System.Windows.Forms.Timer();
 
         public MainScreen()
         {
@@ -27,6 +30,9 @@ namespace Wilkin_Router
         public void Form1_Load(object sender, EventArgs e)
         {
             pictureBox1.Hide();
+            //Setup timer
+            checkLANDevices.Tick += new EventHandler(checkLANDevicesEventProcessor);
+            checkLANDevices.Interval = 1000; //Tick once per second
         }
         
         public bool isUserAdmin()
@@ -103,7 +109,10 @@ namespace Wilkin_Router
                     password.Enabled = false;
                     pictureBox1.Show();
                     pictureBox2.Hide();
+                    //Show host IP
                     label6.Text = Class1.GetIPAddress().MapToIPv4().ToString();
+                    //Start timer to check for devices on LAN
+                    checkLANDevices.Start();
                 }
             }
             catch
@@ -146,6 +155,7 @@ namespace Wilkin_Router
                 progBar.Increment(50);
                 using (Process execute = Process.Start(newProcess.StartInfo))
                 {
+                    checkLANDevices.Stop(); //Stop updating devices on LAN
                     execute.WaitForExit();
                     progBar.Increment(50);
                     mainPanel.Visible = true;
@@ -154,6 +164,24 @@ namespace Wilkin_Router
                     pictureBox2.Show();
                     SSID.Enabled = true;
                     password.Enabled = true;
+                }
+            }
+            catch
+            {
+                //nothing
+            }
+        }
+
+        // This is the method to run when the timer is raised. 
+        private void checkLANDevicesEventProcessor(Object myObject, EventArgs myEventArgs)
+        {
+            try
+            {
+                Dictionary<IPAddress, PhysicalAddress> devices = Class1.GetAllDevicesOnLAN();
+                dataGridView1.Rows.Clear();
+                foreach (KeyValuePair<IPAddress, PhysicalAddress> item in devices)
+                {
+                    dataGridView1.Rows.Add(item.Key.MapToIPv4().ToString(), item.Value.ToString());
                 }
             }
             catch
