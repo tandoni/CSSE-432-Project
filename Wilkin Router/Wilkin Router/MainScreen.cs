@@ -172,16 +172,36 @@ namespace Wilkin_Router
             }
         }
 
-        // This is the method to run when the timer is raised. 
+        // This is the method to run when the timer is raised.
         private void checkLANDevicesEventProcessor(Object myObject, EventArgs myEventArgs)
         {
+            String macAddress;
+            int i;
             try
             {
                 Dictionary<IPAddress, PhysicalAddress> devices = Class1.GetAllDevicesOnLAN();
                 dataGridView1.Rows.Clear();
                 foreach (KeyValuePair<IPAddress, PhysicalAddress> item in devices)
                 {
-                    dataGridView1.Rows.Add(item.Key.MapToIPv4().ToString(), item.Value.ToString());
+                    if (item.Value == null)
+                    {
+                        macAddress = "null";
+                    }
+                    else
+                    {
+                        byte []bytes = item.Value.GetAddressBytes();
+                        macAddress = "";
+
+                        //Convert MAC Address bytes to string
+                        for (i = 0;i<bytes.Length;i++) {
+                            macAddress += bytes[i].ToString("X2");
+                            if (i != bytes.Length - 1) {
+                                macAddress += "-";
+                            }   
+                        }  
+                    }
+                    //Add addresses to table
+                    dataGridView1.Rows.Add(item.Key.MapToIPv4().ToString(),macAddress);
                 }
             }
             catch
